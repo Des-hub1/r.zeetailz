@@ -37,7 +37,7 @@
   }
 
   * { box-sizing: border-box; }
-  html, body { overflow: hidden; height: 100%; }
+  html, body { min-height: 100%; }
   body { background: #0A0A0A; color: #F2F0EB; font-family: 'Clash Grotesk', sans-serif; }
 
   /* Nav */
@@ -176,9 +176,14 @@
   .mobile-menu.open { display: flex; }
   .mobile-menu .nav-link { font-size: 18px; letter-spacing: 0.14em; }
 
+  .nav-inner { padding: 0 40px; }
+  .page-pad { padding: 0 40px; }
+
   @media (max-width: 768px) {
     .nav-right { display: none; }
     .hamburger-btn { display: flex; }
+    .nav-inner { padding: 0 20px; }
+    .page-pad { padding: 0 20px; }
   }
 </style>
 </head>
@@ -186,7 +191,7 @@
 
 <!-- ═══ NAV ═══ -->
 <nav>
-  <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:64px; display:flex; align-items:center; justify-content:space-between;">
+  <div class="nav-inner" style="max-width:1280px; margin:0 auto; height:64px; display:flex; align-items:center; justify-content:space-between;">
     <a href="index.html" style="font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:0.02em; color:#fff; text-decoration:none;">
       r<span style="color:#E8192C;">.</span>zeetailz
     </a>
@@ -227,7 +232,7 @@
   </div>
 
   <!-- Content -->
-  <div style="position:relative; max-width:1280px; margin:0 auto; padding:0 40px; width:100%;">
+  <div class="page-pad" style="position:relative; max-width:1280px; margin:0 auto; width:100%;">
     <div style="max-width:800px;">
       <div class="section-label" style="margin-bottom:20px;">Singapore · Motorbike Detailing</div>
       <h1 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(72px,9vw,128px); letter-spacing:-0.02em; line-height:0.92; color:#fff; margin-bottom:28px;">

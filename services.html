@@ -77,13 +77,33 @@
   .mobile-menu { display:none; position:fixed; top:64px; left:0; right:0; bottom:0; background:rgba(10,10,10,0.97); backdrop-filter:blur(16px); z-index:40; flex-direction:column; align-items:center; justify-content:center; gap:40px; }
   .mobile-menu.open { display:flex; }
   .mobile-menu .nav-link { font-size:18px; letter-spacing:0.14em; }
-  @media (max-width:768px) { .nav-right { display:none; } .hamburger-btn { display:flex; } }
+  .nav-inner { padding: 0 40px; }
+  .page-pad { padding: 0 40px; }
+  .services-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .process-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; padding:64px; }
+  .footer-inner { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; margin-bottom:48px; align-items:start; }
+  .page-footer { padding: 60px 40px; max-width: 1280px; margin: 0 auto; }
+
+  @media (max-width:768px) {
+    .nav-right { display:none; }
+    .hamburger-btn { display:flex; }
+    .nav-inner { padding: 0 20px; }
+    .page-pad { padding: 0 20px; }
+    .services-grid { grid-template-columns: repeat(2,1fr); }
+    .process-inner { grid-template-columns: 1fr; gap: 40px; padding: 32px 24px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .page-footer { padding: 40px 20px; }
+  }
+  @media (max-width:480px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 
 <nav>
-  <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:64px; display:flex; align-items:center; justify-content:space-between;">
+  <div class="nav-inner" style="max-width:1280px; margin:0 auto; height:64px; display:flex; align-items:center; justify-content:space-between;">
     <a href="index.html" style="font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:0.02em; color:#fff; text-decoration:none;">
       r<span style="color:#E8192C;">.</span>zeetailz
     </a>
@@ -110,7 +130,7 @@
 
 <!-- ═══ SERVICES ═══ -->
 <section id="services" style="padding:70px 0 80px;">
-  <div style="max-width:1280px; margin:0 auto; padding:0 40px;">
+  <div class="page-pad" style="max-width:1280px; margin:0 auto;">
     <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:64px; flex-wrap:wrap; gap:24px;">
       <div>
         <div class="section-label">Our Packages</div>
@@ -123,7 +143,7 @@
       </p>
     </div>
 
-    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;">
+    <div class="services-grid">
 
       <!-- Basic -->
       <div class="service-card">
@@ -210,8 +230,8 @@
 
 <!-- ═══ PROCESS ═══ -->
 <section style="padding:0 0 120px;">
-  <div style="max-width:1280px; margin:0 auto; padding:0 40px;">
-    <div style="background:#1A1A1A; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:64px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
+  <div class="page-pad" style="max-width:1280px; margin:0 auto;">
+    <div class="process-inner" style="background:#1A1A1A; border:1px solid rgba(255,255,255,0.06); border-radius:8px;">
       <div>
         <div class="section-label">The Process</div>
         <h2 style="font-family:'Bebas Neue',sans-serif; font-size:56px; letter-spacing:-0.01em; line-height:1; color:#fff; margin-bottom:28px;">What happens<br>to your bike</h2>
@@ -240,8 +260,8 @@
 </section>
 
 <!-- ═══ FOOTER ═══ -->
-<footer style="border-top:1px solid rgba(255,255,255,0.07); padding:60px 40px; max-width:1280px; margin:0 auto;">
-  <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; margin-bottom:48px; align-items:start;">
+<footer class="page-footer" style="border-top:1px solid rgba(255,255,255,0.07);">
+  <div class="footer-inner">
     <div>
       <div style="font-family:'Bebas Neue',sans-serif; font-size:32px; color:#fff; margin-bottom:16px;">r<span style="color:#E8192C;">.</span>zeetailz</div>
       <p style="font-size:14px; color:#6B6B6B; line-height:1.75; max-width:260px; margin-bottom:24px;">Motorbike detailing done properly. pH-neutral, ceramic-coated, and finished by people who actually ride.</p>

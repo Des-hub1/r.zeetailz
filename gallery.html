@@ -72,13 +72,36 @@
   .mobile-menu { display:none; position:fixed; top:64px; left:0; right:0; bottom:0; background:rgba(10,10,10,0.97); backdrop-filter:blur(16px); z-index:40; flex-direction:column; align-items:center; justify-content:center; gap:40px; }
   .mobile-menu.open { display:flex; }
   .mobile-menu .nav-link { font-size:18px; letter-spacing:0.14em; }
-  @media (max-width:768px) { .nav-right { display:none; } .hamburger-btn { display:flex; } }
+  .nav-inner { padding: 0 40px; }
+  .page-pad { padding: 0 40px; }
+  .gallery-header-flex { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:48px; }
+  .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:auto; gap:12px; }
+  .reviews-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .footer-inner { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; margin-bottom:48px; align-items:start; }
+  .page-footer { padding: 60px 40px; max-width: 1280px; margin: 0 auto; }
+
+  @media (max-width:768px) {
+    .nav-right { display:none; }
+    .hamburger-btn { display:flex; }
+    .nav-inner { padding: 0 20px; }
+    .page-pad { padding: 0 20px; }
+    .gallery-header-flex { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 32px; }
+    .gallery-grid { grid-template-columns: repeat(2,1fr); }
+    .gallery-grid .gallery-item { grid-column: auto !important; grid-row: auto !important; aspect-ratio: 4/3 !important; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .page-footer { padding: 40px 20px; }
+  }
+  @media (max-width:480px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 
 <nav>
-  <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:64px; display:flex; align-items:center; justify-content:space-between;">
+  <div class="nav-inner" style="max-width:1280px; margin:0 auto; height:64px; display:flex; align-items:center; justify-content:space-between;">
     <a href="index.html" style="font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:0.02em; color:#fff; text-decoration:none;">
       r<span style="color:#E8192C;">.</span>zeetailz
     </a>
@@ -105,8 +128,8 @@
 
 <!-- ═══ GALLERY ═══ -->
 <section id="gallery" style="padding:70px 0 80px;">
-  <div style="max-width:1280px; margin:0 auto; padding:0 40px;">
-    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:48px;">
+  <div class="page-pad" style="max-width:1280px; margin:0 auto;">
+    <div class="gallery-header-flex">
       <div>
         <div class="section-label">Our Work</div>
         <h1 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,5vw,72px); letter-spacing:-0.01em; line-height:1; color:#fff;">Gallery</h1>
@@ -117,7 +140,7 @@
       </a>
     </div>
 
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:auto; gap:12px;">
+    <div class="gallery-grid">
       <div class="gallery-item" style="grid-column:1; grid-row:1/3; aspect-ratio:2/3;"><img src="Client%27s%20photos/08-gallery-6.jpeg" alt="Foam wash" /></div>
       <div class="gallery-item" style="grid-column:2; grid-row:1; aspect-ratio:4/3;"><img src="Client%27s%20photos/03-gallery-1.jpeg" alt="Clean bike" /></div>
       <div class="gallery-item" style="grid-column:3; grid-row:1; aspect-ratio:4/3;"><img src="Client%27s%20photos/04-gallery-2.jpeg" alt="Bike at night" /></div>
@@ -131,13 +154,13 @@
 
 <!-- ═══ REVIEWS ═══ -->
 <section style="padding:80px 0 120px;">
-  <div style="max-width:1280px; margin:0 auto; padding:0 40px;">
+  <div class="page-pad" style="max-width:1280px; margin:0 auto;">
     <div class="section-label">What Riders Say</div>
     <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:56px; flex-wrap:wrap; gap:24px;">
       <h2 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,5vw,72px); letter-spacing:-0.01em; line-height:1; color:#fff;">5.0 Stars.<br><span style="color:#E8192C;">23 Reviews.</span></h2>
       <div style="display:flex; gap:4px; align-items:center;"><span style="color:#E8192C; font-size:28px;">★★★★★</span></div>
     </div>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+    <div class="reviews-grid">
       <div class="review-card">
         <div style="display:flex; gap:3px; margin-bottom:16px;"><span style="color:#E8192C; font-size:14px;">★★★★★</span></div>
         <p style="font-size:15px; color:#F2F0EB; line-height:1.75; margin-bottom:20px; opacity:0.9;">"Brought my Yamaha R15 in for the Premium package. Couldn't believe the difference — paint looked like it just came out of the showroom. Fast, affordable, and they actually care about the work."</p>
@@ -158,8 +181,8 @@
 </section>
 
 <!-- ═══ FOOTER ═══ -->
-<footer style="border-top:1px solid rgba(255,255,255,0.07); padding:60px 40px; max-width:1280px; margin:0 auto;">
-  <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; margin-bottom:48px; align-items:start;">
+<footer class="page-footer" style="border-top:1px solid rgba(255,255,255,0.07);">
+  <div class="footer-inner">
     <div>
       <div style="font-family:'Bebas Neue',sans-serif; font-size:32px; color:#fff; margin-bottom:16px;">r<span style="color:#E8192C;">.</span>zeetailz</div>
       <p style="font-size:14px; color:#6B6B6B; line-height:1.75; max-width:260px; margin-bottom:24px;">Motorbike detailing done properly. pH-neutral, ceramic-coated, and finished by people who actually ride.</p>

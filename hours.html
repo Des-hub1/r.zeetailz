@@ -53,8 +53,9 @@
   }
   .btn-secondary:hover { background:rgba(242,240,235,0.06); border-color:rgba(242,240,235,0.6); box-shadow:0 0 18px rgba(242,240,235,0.18); }
 
-  .hours-row { display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+  .hours-row { display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:12px; }
   .hours-row:last-child { border-bottom:none; }
+  .hours-row .hours-time { white-space: nowrap; text-align: right; }
 
   /* Clickable contact items */
   .contact-item {
@@ -87,13 +88,32 @@
   .mobile-menu { display:none; position:fixed; top:64px; left:0; right:0; bottom:0; background:rgba(10,10,10,0.97); backdrop-filter:blur(16px); z-index:40; flex-direction:column; align-items:center; justify-content:center; gap:40px; }
   .mobile-menu.open { display:flex; }
   .mobile-menu .nav-link { font-size:18px; letter-spacing:0.14em; }
-  @media (max-width:768px) { .nav-right { display:none; } .hamburger-btn { display:flex; } }
+  .nav-inner { padding: 0 40px; }
+  .hours-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; padding:0 40px; }
+  .cta-section { padding: 0 40px 80px; max-width: 1280px; margin: 0 auto; }
+  .cta-banner { padding: 80px; text-align: center; position: relative; overflow: hidden; }
+  .footer-inner { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; margin-bottom:48px; align-items:start; }
+  .page-footer { padding: 60px 40px; max-width: 1280px; margin: 0 auto; }
+
+  @media (max-width:768px) {
+    .nav-right { display:none; }
+    .hamburger-btn { display:flex; }
+    .nav-inner { padding: 0 20px; }
+    .hours-grid { grid-template-columns: 1fr; gap: 48px; padding: 0 20px; }
+    .cta-section { padding: 0 20px 60px; }
+    .cta-banner { padding: 48px 24px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .page-footer { padding: 40px 20px; }
+  }
+  @media (max-width:480px) {
+    .footer-inner { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 
 <nav>
-  <div style="max-width:1280px; margin:0 auto; padding:0 40px; height:64px; display:flex; align-items:center; justify-content:space-between;">
+  <div class="nav-inner" style="max-width:1280px; margin:0 auto; height:64px; display:flex; align-items:center; justify-content:space-between;">
     <a href="index.html" style="font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:0.02em; color:#fff; text-decoration:none;">
       r<span style="color:#E8192C;">.</span>zeetailz
     </a>
@@ -120,20 +140,20 @@
 
 <!-- ═══ HOURS ═══ -->
 <section id="hours" style="padding:70px 0 120px;">
-  <div style="max-width:1280px; margin:0 auto; padding:0 40px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;">
+  <div class="hours-grid" style="max-width:1280px; margin:0 auto;">
     <div>
       <div class="section-label">Opening Contact Us</div>
       <h1 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,5vw,64px); letter-spacing:-0.01em; line-height:1; color:#fff; margin-bottom:40px;">
         When we're<br>open
       </h1>
       <div style="background:#1A1A1A; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:8px 28px;">
-        <div class="hours-row"><div style="font-size:14px; font-weight:500; color:#F2F0EB;">Monday</div><div style="font-size:14px; color:#6B6B6B;">10:00 AM – 9:00 PM</div></div>
-        <div class="hours-row"><div style="font-size:14px; font-weight:500; color:#F2F0EB;">Tuesday</div><div style="font-size:14px; color:#6B6B6B;">10:00 AM – 9:00 PM</div></div>
-        <div class="hours-row"><div style="font-size:14px; font-weight:500; color:#F2F0EB;">Wednesday</div><div style="font-size:14px; color:#6B6B6B;">10:00 AM – 9:00 PM</div></div>
-        <div class="hours-row"><div style="font-size:14px; font-weight:500; color:#F2F0EB;">Thursday</div><div style="font-size:14px; color:#6B6B6B;">10:00 AM – 9:00 PM</div></div>
-        <div class="hours-row"><div style="font-size:14px; font-weight:500; color:#F2F0EB;">Friday</div><div style="font-size:14px; color:#6B6B6B;">3:00 PM – 11:45 PM</div></div>
-        <div class="hours-row"><div style="font-size:14px; font-weight:500; color:#F2F0EB;">Saturday</div><div style="font-size:14px; color:#6B6B6B;">12:00 AM – 3:00 AM</div></div>
-        <div class="hours-row"><div style="font-size:14px; font-weight:500; color:#6B6B6B;">Sunday</div><div style="font-size:14px; color:#E8192C;">Closed</div></div>
+        <div class="hours-row"><div style="font-size:14px; font-weight:500; color:#F2F0EB;">Monday</div><div class="hours-time" style="font-size:14px; color:#6B6B6B;">10:00 AM – 9:00 PM</div></div>
+        <div class="hours-row"><div style="font-size:14px; font-weight:500; color:#F2F0EB;">Tuesday</div><div class="hours-time" style="font-size:14px; color:#6B6B6B;">10:00 AM – 9:00 PM</div></div>
+        <div class="hours-row"><div style="font-size:14px; font-weight:500; color:#F2F0EB;">Wednesday</div><div class="hours-time" style="font-size:14px; color:#6B6B6B;">10:00 AM – 9:00 PM</div></div>
+        <div class="hours-row"><div style="font-size:14px; font-weight:500; color:#F2F0EB;">Thursday</div><div class="hours-time" style="font-size:14px; color:#6B6B6B;">10:00 AM – 9:00 PM</div></div>
+        <div class="hours-row"><div style="font-size:14px; font-weight:500; color:#F2F0EB;">Friday</div><div class="hours-time" style="font-size:14px; color:#6B6B6B;">3:00 PM – 11:45 PM</div></div>
+        <div class="hours-row"><div style="font-size:14px; font-weight:500; color:#F2F0EB;">Saturday</div><div class="hours-time" style="font-size:14px; color:#6B6B6B;">12:00 AM – 3:00 AM</div></div>
+        <div class="hours-row"><div style="font-size:14px; font-weight:500; color:#6B6B6B;">Sunday</div><div class="hours-time" style="font-size:14px; color:#E8192C;">Closed</div></div>
       </div>
     </div>
 
@@ -182,8 +202,8 @@
 </section>
 
 <!-- ═══ CTA BANNER ═══ -->
-<section style="padding:0 40px 80px; max-width:1280px; margin:0 auto;">
-  <div style="background:#1A1A1A; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:80px; text-align:center; position:relative; overflow:hidden;">
+<section class="cta-section">
+  <div class="cta-banner" style="background:#1A1A1A; border:1px solid rgba(255,255,255,0.06); border-radius:8px;">
     <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%, rgba(232,25,44,0.12) 0%, transparent 60%); pointer-events:none;"></div>
     <div class="section-label" style="text-align:center;">Ready?</div>
     <h2 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(56px,6vw,88px); letter-spacing:-0.02em; line-height:0.95; color:#fff; margin-bottom:20px; position:relative;">
@@ -202,8 +222,8 @@
 </section>
 
 <!-- ═══ FOOTER ═══ -->
-<footer style="border-top:1px solid rgba(255,255,255,0.07); padding:60px 40px; max-width:1280px; margin:0 auto;">
-  <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; margin-bottom:48px; align-items:start;">
+<footer class="page-footer" style="border-top:1px solid rgba(255,255,255,0.07);">
+  <div class="footer-inner">
     <div>
       <div style="font-family:'Bebas Neue',sans-serif; font-size:32px; color:#fff; margin-bottom:16px;">r<span style="color:#E8192C;">.</span>zeetailz</div>
       <p style="font-size:14px; color:#6B6B6B; line-height:1.75; max-width:260px; margin-bottom:24px;">Motorbike detailing done properly. pH-neutral, ceramic-coated, and finished by people who actually ride.</p>
