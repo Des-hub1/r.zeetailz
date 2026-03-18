@@ -98,6 +98,152 @@
     .services-grid { grid-template-columns: 1fr; }
     .footer-inner { grid-template-columns: 1fr; }
   }
+
+  /* ── Booking flow ── */
+  .service-card.selected {
+    border-color: rgba(232,25,44,0.6) !important;
+    box-shadow: 0 0 0 1px rgba(232,25,44,0.25), 0 4px 24px rgba(232,25,44,0.15) !important;
+  }
+
+  #booking-section {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 400ms cubic-bezier(0.16,1,0.3,1),
+                max-height 700ms cubic-bezier(0.16,1,0.3,1);
+  }
+  #booking-section.visible {
+    opacity: 1;
+    max-height: 2400px;
+  }
+
+  .booking-layout {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+  }
+  .booking-left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+  .booking-right { width: 300px; flex-shrink: 0; align-self: flex-start; }
+
+  /* Calendar */
+  .cal-card {
+    background: #1A1A1A;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 28px;
+  }
+  .cal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 24px;
+  }
+  .cal-nav-btn {
+    background: none; border: 1px solid rgba(255,255,255,0.12); border-radius: 4px;
+    color: #F2F0EB; cursor: pointer; padding: 6px 10px; font-size: 14px;
+    transition: background 200ms, border-color 200ms;
+  }
+  .cal-nav-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.25); }
+  .cal-grid {
+    display: grid; grid-template-columns: repeat(7,1fr); gap: 4px;
+  }
+  .cal-day-label {
+    text-align: center; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.1em; color: #6B6B6B; padding: 6px 0;
+  }
+  .cal-day {
+    text-align: center; padding: 8px 4px; border-radius: 4px;
+    font-size: 13px; cursor: pointer; color: #F2F0EB;
+    transition: background 150ms, color 150ms;
+    border: 1px solid transparent;
+  }
+  .cal-day:hover:not(.disabled):not(.selected) {
+    background: rgba(255,255,255,0.08);
+  }
+  .cal-day.today {
+    border-color: rgba(232,25,44,0.4);
+    color: #E8192C;
+  }
+  .cal-day.selected {
+    background: #E8192C; color: #fff; border-color: #E8192C;
+  }
+  .cal-day.disabled {
+    color: #333; cursor: default; pointer-events: none;
+  }
+  .cal-day.empty { pointer-events: none; }
+
+  .tz-row {
+    display: flex; align-items: center; gap: 8px;
+    margin-top: 18px; padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    font-size: 12px; color: #6B6B6B;
+  }
+
+  /* Time slots */
+  .slots-card {
+    background: #1A1A1A;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 28px;
+  }
+  .slots-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    margin-top: 18px;
+  }
+  .slot-btn {
+    background: transparent; border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px; color: #F2F0EB; cursor: pointer;
+    font-family: 'Clash Grotesk', sans-serif;
+    font-size: 13px; font-weight: 500; padding: 11px 8px;
+    text-align: center;
+    transition: background 150ms, border-color 150ms, color 150ms;
+  }
+  .slot-btn:hover:not(.selected) {
+    background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3);
+  }
+  .slot-btn.selected {
+    background: #E8192C; border-color: #E8192C; color: #fff;
+  }
+
+  /* Summary card */
+  .summary-card {
+    background: #1A1A1A;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 24px;
+  }
+  .summary-row {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+    font-size: 13px;
+  }
+  .summary-row:last-of-type { border-bottom: none; }
+  .summary-label { color: #6B6B6B; }
+  .summary-value { color: #F2F0EB; font-weight: 500; text-align: right; max-width: 160px; }
+  .summary-total-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 0 0; margin-top: 4px;
+  }
+  .summary-total-label { font-size: 14px; font-weight: 600; color: #F2F0EB; }
+  .summary-total-price { font-size: 22px; font-weight: 800; color: #fff; }
+
+  .btn-whatsapp {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; padding: 14px; margin-top: 16px;
+    background: #25D366; color: #fff; border: none; border-radius: 4px;
+    font-family: 'Clash Grotesk', sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; cursor: pointer;
+    transition: opacity 200ms, transform 200ms;
+  }
+  .btn-whatsapp:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+  .btn-whatsapp:disabled { background: #1f3d2a; color: #4a7a5a; cursor: not-allowed; }
+
+  @media (max-width: 900px) {
+    .booking-layout { flex-direction: column; }
+    .booking-right { width: 100%; position: static; }
+  }
+  @media (max-width: 600px) {
+    .slots-grid { grid-template-columns: 1fr 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -111,8 +257,9 @@
       <a href="about.html"    class="nav-link">About</a>
       <a href="services.html" class="nav-link">Services</a>
       <a href="gallery.html"  class="nav-link">Gallery</a>
+      <a href="reviews.html"  class="nav-link">Reviews</a>
       <a href="hours.html"    class="nav-link">Contact Us</a>
-      <a href="https://rzeetailzhe90.setmore.com" target="_blank" class="btn-primary">Book Now</a>
+      <a href="#services" class="btn-primary">Book Now</a>
     </div>
     <button class="hamburger-btn" id="hamburger" onclick="toggleMobileMenu()" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -124,8 +271,9 @@
   <a href="about.html"    class="nav-link" onclick="toggleMobileMenu()">About</a>
   <a href="services.html" class="nav-link" onclick="toggleMobileMenu()">Services</a>
   <a href="gallery.html"  class="nav-link" onclick="toggleMobileMenu()">Gallery</a>
+  <a href="reviews.html"  class="nav-link" onclick="toggleMobileMenu()">Reviews</a>
   <a href="hours.html"    class="nav-link" onclick="toggleMobileMenu()">Contact Us</a>
-  <a href="https://rzeetailzhe90.setmore.com" target="_blank" class="btn-primary" style="margin-top:8px;">Book Now</a>
+  <a href="#services" class="btn-primary" style="margin-top:8px;" onclick="toggleMobileMenu()">Book Now</a>
 </div>
 
 <!-- ═══ SERVICES ═══ -->
@@ -159,7 +307,7 @@
           <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:#6B6B6B;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-7" stroke="#E8192C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Safe on all paint finishes</div>
           <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:#6B6B6B;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-7" stroke="#E8192C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Hand-dried finish</div>
         </div>
-        <a href="https://rzeetailzhe90.setmore.com" target="_blank" class="btn-secondary" style="width:100%; justify-content:center; margin-top:auto;">Book This</a>
+        <button onclick="selectService('basic','Basic 🫧',12,'20 min')" class="btn-secondary" style="width:100%; justify-content:center; margin-top:auto;">Book This</button>
       </div>
 
       <!-- Basic+ -->
@@ -176,7 +324,7 @@
           <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:#6B6B6B;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-7" stroke="#E8192C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Hand-wax for paint depth</div>
           <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:#6B6B6B;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-7" stroke="#E8192C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Enhanced gloss finish</div>
         </div>
-        <a href="https://rzeetailzhe90.setmore.com" target="_blank" class="btn-secondary" style="width:100%; justify-content:center; margin-top:auto;">Book This</a>
+        <button onclick="selectService('basicplus','Basic+ 🫧',20,'30 min')" class="btn-secondary" style="width:100%; justify-content:center; margin-top:auto;">Book This</button>
       </div>
 
       <!-- Premium — FEATURED -->
@@ -195,7 +343,7 @@
           <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:#F2F0EB; opacity:0.8;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-7" stroke="#E8192C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>UV protection layer</div>
           <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:#F2F0EB; opacity:0.8;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-7" stroke="#E8192C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Water & grime repellent</div>
         </div>
-        <a href="https://rzeetailzhe90.setmore.com" target="_blank" class="btn-primary" style="width:100%; justify-content:center; margin-top:auto;">Book This</a>
+        <button onclick="selectService('premium','Premium 🫧',25,'45 min')" class="btn-primary" style="width:100%; justify-content:center; margin-top:auto;">Book This</button>
       </div>
 
       <!-- Premium+ -->
@@ -213,12 +361,112 @@
           <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:#6B6B6B;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-7" stroke="#E8192C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Nano Ceramic Coating</div>
           <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:#6B6B6B;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-7" stroke="#E8192C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Complete protection package</div>
         </div>
-        <a href="https://rzeetailzhe90.setmore.com" target="_blank" class="btn-secondary" style="width:100%; justify-content:center; margin-top:auto;">Book This</a>
+        <button onclick="selectService('premiumplus','Premium+ 🫧',35,'1 hr')" class="btn-secondary" style="width:100%; justify-content:center; margin-top:auto;">Book This</button>
       </div>
 
     </div>
 
-    <div style="margin-top:24px; background:#1A1A1A; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:20px 28px; display:flex; align-items:center; gap:16px;">
+    <!-- ═══ BOOKING SECTION ═══ -->
+    <div id="booking-section" style="margin-top:40px;">
+      <div style="margin-bottom:28px;">
+        <div class="section-label">Step 2</div>
+        <h2 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(32px,4vw,48px); letter-spacing:-0.01em; line-height:1; color:#fff;">
+          Select a Date &amp; Time
+        </h2>
+      </div>
+      <div class="booking-layout">
+
+        <!-- LEFT: Calendar + Time slots -->
+        <div class="booking-left">
+
+          <!-- Calendar card -->
+          <div class="cal-card">
+            <div style="margin-bottom:20px;">
+              <div id="cal-service-label" style="font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#E8192C; margin-bottom:6px;"></div>
+              <div style="font-size:15px; font-weight:600; color:#F2F0EB;">Choose your date</div>
+            </div>
+            <div class="cal-header">
+              <button class="cal-nav-btn" onclick="changeMonth(-1)">&#8249;</button>
+              <div id="cal-month-label" style="font-size:15px; font-weight:600; color:#F2F0EB; letter-spacing:0.02em;"></div>
+              <button class="cal-nav-btn" onclick="changeMonth(1)">&#8250;</button>
+            </div>
+            <div class="cal-grid" id="cal-grid">
+              <div class="cal-day-label">M</div>
+              <div class="cal-day-label">T</div>
+              <div class="cal-day-label">W</div>
+              <div class="cal-day-label">T</div>
+              <div class="cal-day-label">F</div>
+              <div class="cal-day-label">S</div>
+              <div class="cal-day-label">S</div>
+            </div>
+            <div class="tz-row">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#6B6B6B" stroke-width="1.2"/><path d="M7 4v3l2 1.5" stroke="#6B6B6B" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Singapore — SGT (UTC+8)
+            </div>
+          </div>
+
+          <!-- Time slots card (hidden until date selected) -->
+          <div class="slots-card" id="slots-card" style="display:none;">
+            <div id="slots-date-label" style="font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#6B6B6B; margin-bottom:6px;"></div>
+            <div style="font-size:15px; font-weight:600; color:#F2F0EB;">Choose a time</div>
+            <div class="slots-grid" id="slots-grid"></div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Payment summary -->
+        <div class="booking-right">
+          <div class="summary-card">
+            <div style="font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#6B6B6B; margin-bottom:16px;">Order Summary</div>
+
+            <div class="summary-row">
+              <span class="summary-label">Service</span>
+              <span class="summary-value" id="sum-service">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Duration</span>
+              <span class="summary-value" id="sum-duration">—</span>
+            </div>
+            <div class="summary-row" style="align-items:center;">
+              <label style="display:flex; align-items:center; gap:10px; cursor:pointer; width:100%;">
+                <input type="checkbox" id="helmet-addon" onchange="updateHelmet()"
+                  style="accent-color:#E8192C; width:15px; height:15px; cursor:pointer; flex-shrink:0;">
+                <span style="font-size:13px; color:#F2F0EB;">Helmet Cleaning ⛑️</span>
+                <span style="margin-left:auto; font-size:13px; color:#6B6B6B; font-weight:500;">+$10</span>
+              </label>
+            </div>
+
+            <div class="summary-row">
+              <span class="summary-label">Date</span>
+              <span class="summary-value" id="sum-date">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Time</span>
+              <span class="summary-value" id="sum-time">—</span>
+            </div>
+
+            <div style="height:1px; background:rgba(255,255,255,0.07); margin:4px 0 0;"></div>
+            <div class="summary-total-row">
+              <span class="summary-total-label">Total</span>
+              <span class="summary-total-price" id="sum-price">$—</span>
+            </div>
+
+            <button class="btn-whatsapp" id="whatsapp-btn" disabled onclick="checkout()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.126 1.536 5.86L0 24l6.324-1.508A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.795 9.795 0 01-5.003-1.373l-.36-.213-3.753.895.944-3.658-.234-.375A9.777 9.777 0 012.182 12C2.182 6.565 6.565 2.182 12 2.182c5.434 0 9.818 4.383 9.818 9.818 0 5.434-4.384 9.818-9.818 9.818z"/></svg>
+              Confirm via WhatsApp
+            </button>
+
+            <div id="whatsapp-hint" style="margin-top:14px; font-size:11px; color:#6B6B6B; text-align:center; line-height:1.6;">
+              Select a date &amp; time above to<br>enable booking confirmation.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- ═══ END BOOKING SECTION ═══ -->
+
+    <div style="margin-top:40px; background:#1A1A1A; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:20px 28px; display:flex; align-items:center; gap:16px;">
       <div style="font-size:24px;">⛑️</div>
       <div>
         <div style="font-size:14px; font-weight:600; color:#fff; margin-bottom:3px;">Helmet Cleaning & Polishing — Also Available</div>
@@ -305,6 +553,211 @@ function toggleMobileMenu() {
   document.getElementById('mobile-menu').classList.toggle('open');
   document.getElementById('hamburger').classList.toggle('open');
 }
+
+/* ── Firebase ── */
+var FIREBASE_URL = 'https://rzeetailz-e66ab-default-rtdb.asia-southeast1.firebasedatabase.app';
+
+/* ── Booking state ── */
+var booking     = { serviceId: null, serviceName: '', price: 0, duration: '', date: null, time: null };
+var blockedData = {};
+var calYear, calMonth;
+
+function fetchBlockedData(cb) {
+  fetch(FIREBASE_URL + '/blocked.json')
+    .then(function(r) { return r.json(); })
+    .then(function(d) { blockedData = d || {}; if (cb) cb(); })
+    .catch(function()  { blockedData = {};      if (cb) cb(); });
+}
+
+/* Firebase slot key encoding: "10:00 AM" → "10_00-AM" */
+function encodeSlot(t) { return t.replace(/:/g, '_').replace(/ /g, '-'); }
+
+/* Business hours: [startH, startMin, endH, endMin] or null for closed.
+   Days: 0=Sun,1=Mon,...,6=Sat */
+var HOURS = {
+  0: null,                        // Sunday — closed
+  1: [10,0, 21,0],               // Mon 10AM–9PM
+  2: [10,0, 21,0],               // Tue
+  3: [10,0, 21,0],               // Wed
+  4: [10,0, 21,0],               // Thu
+  5: [15,0, 23,45],              // Fri 3PM–11:45PM
+  6: [0,0,  3,0]                 // Sat 12AM–3AM
+};
+
+var MONTH_NAMES = ['January','February','March','April','May','June',
+                   'July','August','September','October','November','December'];
+var DAY_NAMES   = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+function selectService(id, name, price, duration) {
+  booking.serviceId   = id;
+  booking.serviceName = name;
+  booking.price       = price;
+  booking.duration    = duration;
+  booking.date        = null;
+  booking.time        = null;
+
+  /* Highlight selected card */
+  document.querySelectorAll('.service-card').forEach(function(c){ c.classList.remove('selected'); });
+  event.currentTarget.closest('.service-card').classList.add('selected');
+
+  /* Show booking section */
+  var section = document.getElementById('booking-section');
+  section.classList.add('visible');
+  setTimeout(function(){ section.scrollIntoView({ behavior:'smooth', block:'start' }); }, 60);
+
+  /* Hide slots, init calendar month */
+  var now = new Date();
+  calYear  = now.getFullYear();
+  calMonth = now.getMonth();
+  document.getElementById('slots-card').style.display = 'none';
+
+  /* Fetch fresh blocked data then render calendar */
+  fetchBlockedData(function() { renderCalendar(); });
+
+  /* Update summary service info, reset date/time */
+  document.getElementById('cal-service-label').textContent = name;
+  document.getElementById('sum-service').textContent  = name;
+  document.getElementById('sum-duration').textContent = duration;
+  document.getElementById('sum-price').textContent    = '$' + price;
+  document.getElementById('sum-date').textContent     = '—';
+  document.getElementById('sum-time').textContent     = '—';
+  document.getElementById('whatsapp-btn').disabled    = true;
+  document.getElementById('whatsapp-hint').style.display = '';
+  document.getElementById('helmet-addon').checked = false;
+}
+
+function renderCalendar() {
+  document.getElementById('cal-month-label').textContent = MONTH_NAMES[calMonth] + ' ' + calYear;
+
+  var firstDay = new Date(calYear, calMonth, 1).getDay(); // 0=Sun
+  /* Convert to Mon-start: Mon=0 … Sun=6 */
+  var startOffset = (firstDay === 0) ? 6 : firstDay - 1;
+  var daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  var today = new Date(); today.setHours(0,0,0,0);
+
+  /* Remove existing day cells (keep first 7 label divs) */
+  var grid = document.getElementById('cal-grid');
+  var cells = grid.children;
+  while (cells.length > 7) grid.removeChild(cells[7]);
+
+  /* Empty cells before first day */
+  for (var i = 0; i < startOffset; i++) {
+    var empty = document.createElement('div');
+    empty.className = 'cal-day empty';
+    grid.appendChild(empty);
+  }
+
+  for (var d = 1; d <= daysInMonth; d++) {
+    var date = new Date(calYear, calMonth, d);
+    var dow  = date.getDay(); // 0=Sun
+    var isPast   = date < today;
+    var isClosed = HOURS[dow] === null;
+    var isToday  = date.getTime() === today.getTime();
+    var dateStr  = calYear + '-' + pad(calMonth+1) + '-' + pad(d);
+    var isSelected = booking.date === dateStr;
+
+    var isBlockedFull = blockedData[dateStr] === true;
+
+    var cell = document.createElement('div');
+    cell.className = 'cal-day';
+    cell.textContent = d;
+    if (isPast || isClosed || isBlockedFull) cell.classList.add('disabled');
+    if (isToday && !isPast)  cell.classList.add('today');
+    if (isSelected)          cell.classList.add('selected');
+
+    if (!isPast && !isClosed && !isBlockedFull) {
+      (function(ds, dw){ cell.addEventListener('click', function(){ selectDate(ds, dw); }); })(dateStr, dow);
+    }
+    grid.appendChild(cell);
+  }
+}
+
+function changeMonth(dir) {
+  calMonth += dir;
+  if (calMonth < 0)  { calMonth = 11; calYear--; }
+  if (calMonth > 11) { calMonth = 0;  calYear++; }
+  renderCalendar();
+}
+
+function selectDate(dateStr, dow) {
+  booking.date = dateStr;
+  booking.time = null;
+  renderCalendar();
+
+  /* Format date label */
+  var parts = dateStr.split('-');
+  var d = new Date(+parts[0], +parts[1]-1, +parts[2]);
+  var label = DAY_NAMES[(dow===0)?6:dow-1] + ', ' + d.getDate() + ' ' + MONTH_NAMES[d.getMonth()];
+
+  document.getElementById('sum-date').textContent = label;
+  document.getElementById('sum-time').textContent = '—';
+  document.getElementById('whatsapp-btn').disabled = true;
+  document.getElementById('whatsapp-hint').style.display = '';
+
+  /* Render slots — filter out admin-blocked individual slots */
+  var h = HOURS[dow];
+  document.getElementById('slots-date-label').textContent = label;
+  document.getElementById('slots-card').style.display = 'block';
+
+  var sH = h[0], sM = h[1], eH = h[2], eM = h[3];
+  var cur = sH * 60 + sM;
+  var end = eH * 60 + eM;
+  var dayBlockData = (blockedData[dateStr] && typeof blockedData[dateStr] === 'object')
+                     ? blockedData[dateStr] : {};
+
+  var sGrid = '';
+  while (cur <= end) {
+    var h12  = cur / 60 | 0;
+    var min  = cur % 60;
+    var ampm = h12 < 12 ? 'AM' : 'PM';
+    var h12d = h12 % 12 || 12;
+    var label12 = h12d + ':' + pad(min) + ' ' + ampm;
+    if (!dayBlockData[encodeSlot(label12)]) {
+      sGrid += '<button class="slot-btn" onclick="selectTime(\'' + label12 + '\')">' + label12 + '</button>';
+    }
+    cur += 15;
+  }
+
+  if (sGrid === '') {
+    sGrid = '<div style="grid-column:1/-1; font-size:13px; color:#6B6B6B; padding:12px 0;">' +
+            'No available slots for this date. Please choose another day.</div>';
+  }
+  document.getElementById('slots-grid').innerHTML = sGrid;
+}
+
+function selectTime(timeStr) {
+  booking.time = timeStr;
+  document.querySelectorAll('.slot-btn').forEach(function(b){ b.classList.remove('selected'); });
+  /* find the button with matching text */
+  document.querySelectorAll('.slot-btn').forEach(function(b){
+    if (b.textContent.trim() === timeStr) b.classList.add('selected');
+  });
+  document.getElementById('sum-time').textContent = timeStr;
+  document.getElementById('whatsapp-btn').disabled = false;
+  document.getElementById('whatsapp-hint').style.display = 'none';
+}
+
+function updateHelmet() {
+  var checked = document.getElementById('helmet-addon').checked;
+  var total = booking.price + (checked ? 10 : 0);
+  document.getElementById('sum-price').textContent = '$' + total;
+}
+
+function checkout() {
+  if (!booking.date || !booking.time) return;
+  var parts = booking.date.split('-');
+  var d = new Date(+parts[0], +parts[1]-1, +parts[2]);
+  var dateLabel = d.getDate() + ' ' + MONTH_NAMES[d.getMonth()] + ' ' + d.getFullYear();
+  var helmetChecked = document.getElementById('helmet-addon').checked;
+  var total = booking.price + (helmetChecked ? 10 : 0);
+  var msg = 'Hi! I\'d like to book the ' + booking.serviceName + ' package ($' + booking.price + ')' +
+            (helmetChecked ? ' + Helmet Cleaning & Polishing (+$10)' : '') +
+            ' on ' + dateLabel + ' at ' + booking.time +
+            '. Total: $' + total + '. Please confirm my slot!';
+  window.open('https://wa.me/6588823536?text=' + encodeURIComponent(msg), '_blank');
+}
+
+function pad(n) { return n < 10 ? '0' + n : '' + n; }
 </script>
 </body>
 </html>
